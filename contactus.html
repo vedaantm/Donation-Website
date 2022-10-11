@@ -1,0 +1,158 @@
+<html>
+  <head>
+  <link rel="stylesheet" href="projform.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <title>Smile Society/Contact us</title>
+  <script>
+    function validate()
+  {
+    var fname=document.getElementById("fname");
+    var lname=document.getElementById("lname");
+    var email=document.getElementById("mailid");
+    var number=document.getElementById("number");
+
+    if(isAlphabet(fname,"Enter a valid first name!")){
+    if(isAlphabet(lname,"Enter a valid last name!")){
+    if(isMail(email,"Please enter a valid email-id!")){
+    if(isNumeric(number,"Please enter a valid contact number with 10 digits and only numbers!")){
+      return true;
+    }
+    }
+    }
+    }
+    return false;
+  }
+
+  function notEmpty(elem, helperMsg){
+      if(elem.value == ""){
+          alert(helperMsg);
+          elem.focus();
+          return false;
+      }
+      else{
+      return true;
+      }}
+
+      function isNumeric(elem, helperMsg){
+          var numericExpression = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+          if(elem.value.match(numericExpression)){
+              return true;
+          }
+          else{
+              alert(helperMsg);
+              elem.focus();
+              return false;
+          }
+      }
+      function isAlphabet(elem, helperMsg){
+          var alphaExp = /^[a-zA-Z]+$/;
+          if(elem.value.match(alphaExp)){
+              return true;
+          }else{
+              alert(helperMsg);
+              elem.focus();
+              return false;
+          }
+      }
+
+      function isAlphanumeric(elem, helperMsg){
+          var alphaExp = /^[0-9a-zA-Z]+$/;
+          if(elem.value.match(alphaExp)){
+              return true;
+          }else{
+              alert(helperMsg);
+              elem.focus();
+              return false;
+          }
+      }
+
+      function isMail(elem, helperMsg){
+          var emailExp = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+          if(elem.value.match(emailExp)){
+              return true;
+          }else{
+              alert(helperMsg);
+              elem.focus();
+              return false;
+          }
+      }
+
+  </script>
+  </head>
+  <body>
+
+<!-- Nav bar -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+<nav class="navbar navbar-expand-lg navbar-light shadow-nav" style="background-color: #e3f2fd; width: 100%!important;">
+    <div class="d-flex container-fluid align-content-baseline justify-content-between">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-light" id="navbarNavDropdown" >
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="homepage.html">Home 🏠</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About ℹ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactus.html">Contact Us 📞</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Donations 💸
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="education.html">Education</a></li>
+                        <li><a class="dropdown-item" href="#">Essentials</a></li>
+                        <li><a class="dropdown-item" href="#">Health facilities</a></li>
+                    </ul>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </div>
+        <div><img class="align-self-baseline" src="logo_smile_foundation.png" style="width: 50%;"></div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary"><a href="http://localhost/IOT/test.php" style="color:white;">Sign Up</a></button>
+            <button type="button" class="btn btn-outline-primary"><a href="http://localhost/IOT/testlogin.php" style="color:rgb(32, 66, 219);">Login</a></button>
+        </div>
+    </div>
+</nav>
+
+    <hgroup>
+      <h1>FILL UP THE GIVEN FORM FOR FEEDBACKS</h1>
+    </hgroup>
+    <form action="contactsuccess.html" method="get" name="register" onsubmit="return(validate());">
+      <div class="group">
+        <input type="text" id="fname" placeholder="First Name"><span class="highlight"></span><span class="bar"></span>
+      </div>
+
+      <div class="group">
+        <input type="text" id="lname" placeholder="Last Name"><span class="highlight"></span><span class="bar"></span>
+      </div>
+      <hgroup>
+        <h3 style="color:#636363">GIVE US A CONTACT TO REVERT BACK TO</h3>
+      </hgroup>
+      <div class="group">
+        <input type="text" id="mailid" placeholder="Mail-Id"><span class="highlight"></span><span class="bar"></span>
+      </div>
+
+      <div class="group">
+        <input type="text" id="number" placeholder="Phone Number"><span class="highlight"></span><span class="bar"></span>
+      </div>
+
+      <hgroup>
+       <a href="mailto:vedaantmelkari@gmail.com">CLICK HERE TO DROP AN EMAIL FOR QUERIES</a><br><br>
+     </hgroup>
+
+    <input type="submit" value="Submit your details" onclick="return(validate());"  class="button buttonBlue">
+    </form>
+    <footer><a href="homepage.html" target="_blank"><img src="logo.jpeg"></a>
+      <p>You Wont regret this we promise <a href="homepage.html" target="_blank">Google</a></p>
+    </footer>
+  </body>
+</html>

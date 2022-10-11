@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Product Details</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+
+        * {
+        --font: 'Quicksand';
+        /* --font-color: white;
+        --bg-color: rgba(145, 119, 119, 0.288); */
+        }
+        /***globals*/
+        body 
+        {
+            background-color: #e0eefc;
+            font-family: var(--font);
+            overflow-x: hidden;
+        }
+
+        /* img 
+        {
+            max-width:100%;
+            max-height: 50%;
+        } */
+
+        .preview 
+        {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        @media screen and (max-width: 996px) {
+            .preview {
+                margin-bottom: 20px;
+            }
+        }
+
+        .preview-pic {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+
+        .preview-thumbnail.nav-tabs {
+            border: none;
+            margin-top: 15px;
+        }
+
+        .preview-thumbnail.nav-tabs li {
+            width: 18%;
+            margin-right: 2.5%;
+        }
+
+        .preview-thumbnail.nav-tabs li img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .preview-thumbnail.nav-tabs li a {
+            padding: 0;
+            margin: 0;
+        }
+
+        .preview-thumbnail.nav-tabs li:last-of-type {
+            margin-right: 0;
+        }
+
+        .tab-content {
+            overflow: hidden;
+        }
+
+        .tab-content img {
+            width: 100%;
+            -webkit-animation-name: opacity;
+            animation-name: opacity;
+            -webkit-animation-duration: .3s;
+            animation-duration: .3s;
+        }
+
+        .card {
+            margin-top: 50px;
+            padding: 3em;
+            line-height: 1.5em;
+            border-radius: 50px;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #cad6e3, #f0ffff);
+            box-shadow:  20px 20px 60px #becad6, -20px -20px 60px #ffffff;
+        }
+
+        @media screen and (min-width: 997px) {
+            .wrapper {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+            }
+        }
+
+        .details {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .colors {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+
+        .product-title,
+        .price,
+        .sizes,
+        .colors {
+            text-transform: UPPERCASE;
+            font-weight: bold;
+        }
+
+        .checked,
+        .price span {
+            color: #ff9f1a;
+        }
+
+        .product-title,
+        .rating,
+        .product-description,
+        .price,
+        .vote,
+        .sizes {
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            margin-top: 0;
+        }
+
+        .size {
+            margin-right: 10px;
+        }
+
+        .size:first-of-type {
+            margin-left: 40px;
+        }
+
+        .color {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            height: 2em;
+            width: 2em;
+            border-radius: 2px;
+        }
+
+        .color:first-of-type {
+            margin-left: 20px;
+        }
+
+        .add-to-cart,
+        .like {
+            background: #ff9f1a;
+            padding: 1.2em 1.5em;
+            border: none;
+            text-transform: UPPERCASE;
+            font-weight: bold;
+            color: #fff;
+            -webkit-transition: background .3s ease;
+            transition: background .3s ease;
+        }
+
+        .add-to-cart:hover,
+        .like:hover {
+            background: #b36800;
+            color: #fff;
+        }
+
+        .not-available {
+            text-align: center;
+            line-height: 2em;
+        }
+
+        .not-available:before {
+            font-family: fontawesome;
+            content: "\f00d";
+            color: #fff;
+        }
+
+        .orange {
+            background: #ff9f1a;
+        }
+
+        .green {
+            background: #85ad00;
+        }
+
+        .blue {
+            background: #0076ad;
+        }
+
+        .tooltip-inner {
+            padding: 1.3em;
+        }
+
+        @-webkit-keyframes opacity {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale(3);
+                transform: scale(3);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes opacity 
+        {
+            0% 
+            {
+                opacity: 0;
+                -webkit-transform: scale(3);
+                transform: scale(3);
+            }
+
+            100% 
+            {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        .shadow-nav {
+            box-shadow: 0px 0px 20px gray;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-nav" style="background-color: #e3f2fd; width: 100%!important;">
+        <div class="d-flex container-fluid align-content-baseline justify-content-between">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse navbar-light" id="navbarNavDropdown" >
+                        <ul class="navbar-nav">
+                                <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="homepage.html">Home 🏠</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="#">About ℹ</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="contactus.html">Contact Us 📞</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Donations 💸
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <li><a class="dropdown-item" href="education.html">Education</a></li>
+                                                <li><a class="dropdown-item" href="#">Essentials</a></li>
+                                                <li><a class="dropdown-item" href="health.html">Health facilities</a></li>
+                                        </ul>
+                                </li>
+                                <li>
+                                </li>
+                        </ul>  
+                </div>
+                <div><img class="align-self-baseline" src="logo_smile_foundation.png" style="width: 50%;"></div>
+                <div class="d-flex justify-content-end">
+                        <li class="nav-item dropdown" style="list-style: none;">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://img.icons8.com/glyph-neue/64/000000/guest-male.png" style="width: 50%;"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                    <li id="acc"></li>
+                            </ul>
+                        </li>
+                        <button type="button" class="btn btn-primary"><a href="http://localhost/IOT/test.php" style="color:white;">Sign Up</a></button>
+                        <button type="button" class="btn btn-outline-primary"><a href="http://localhost/IOT/testlogin.php" style="color:rgb(32, 66, 219);">Login</a></button>
+                </div>
+        </div>
+</nav>
+
+    <h1><center>Save the Children NGO- items for donation</center></h1>
+
+    <!-- bcg vaccine appointment -->
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="bcg.png" style="padding-top: 25px;" ></div>
+                            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                        </div>
+                        <!-- <ul class="preview-thumbnail nav nav-tabs">
+                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img
+                                        src="http://placekitten.com/200/126" /></a></li>
+                        </ul> -->
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">Appointment for <b>BCG</b> vaccine</h3>
+                        <div class="rating">
+                            <!-- <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div> -->
+                        <h3>⚠️Consult the doctor at the given hospital for dosage</h3>
+                        <h4 class="price">₹ 645</h4>
+                        <iframe
+                        width= 100%
+                        height="210"
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                      </iframe>
+                  
+                        <div class="action">
+                            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                            <button class="like btn btn-default" type="button"><span
+                                    class="fa fa-heart"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+
+<!-- tetanus vaccine appointment -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="tetanaus.png"></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">Appointment for <b>Tetanus</b> vaccine</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <h3>⚠️Consult the doctor at the given hospital for dosage</h3>
+                    <h4 class="price">₹ 50</h4>
+                    <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Fortis+Hospital+Mulund&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe>
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- hepatitis vaccine appointment -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="hepatitis.png" style="width:70%"/></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">Appointment for <b>Hepatitis-B</b> vaccine</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <h3>⚠️Consult the doctor at the given hospital for dosage</h3>
+                    <h4 class="price">₹ 250</h4>
+                    <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe>
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+
+<!-- polio vaccine appointment -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="polio.png" style="width:90%;  padding-top: 20px;"/></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">Appointment for <b>Polio</b> vaccine</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <h3>⚠️Consult the doctor at the given hospital for dosage</h3>
+                    <h4 class="price">₹ 190</h4>
+                    <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe>
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+
+<!-- adhesive tape -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="adhesivetape.jpg" style="width:60%; padding-left: 75px;" ></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">ADHESIVE TAPE</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                    <h4 class="price">₹ 88.80</h4>
+                    <!-- <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe> -->
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+
+<!-- scissors/tweezers -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="scissors_tweezers.jfif" style="width:75%; padding-left: 75px;" ></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">SCISSORS AND TWEEZERS FOR FIRST AID</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                    <h4 class="price">Scissors -> ₹ 250 <br> Tweezers -> ₹ 61 <br> TOTAL -> ₹ 311</h4>
+                    <!-- <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe> -->
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+
+ <!-- Thermometer -->
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="thermometer.jfif" style="width:75%; padding-left: 75px;" ></div>
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                    </div>
+                    <!-- <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img
+                                    src="http://placekitten.com/200/126" /></a></li>
+                    </ul> -->
+
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">THERMOMETER</h3>
+                    <div class="rating">
+                        <!-- <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div> -->
+                    <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                    <h4 class="price">₹ 199</h4>
+                    <!-- <iframe
+                    width= 100%
+                    height="210"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                  </iframe> -->
+              
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="like btn btn-default" type="button"><span
+                                class="fa fa-heart"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <!-- Gauze roll -->
+ <div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-6">
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="gauzeroll.jpg" style="width:50%; padding-left: 75px;" ></div>
+                    <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                </div>
+                <!-- <ul class="preview-thumbnail nav nav-tabs">
+                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-2" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-3" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-4" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-5" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                </ul> -->
+
+            </div>
+            <div class="details col-md-6">
+                <h3 class="product-title">GAUZE ROLL</h3>
+                <div class="rating">
+                    <!-- <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div> -->
+                <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                <h4 class="price">₹ 99</h4>
+                <!-- <iframe
+                width= 100%
+                height="210"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                </iframe> -->
+          
+                <div class="action">
+                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                    <button class="like btn btn-default" type="button"><span
+                            class="fa fa-heart"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Cold pack -->
+<div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-6">
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="coldpack.jpg" style="width:50%; padding-left: 75px;" ></div>
+                    <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                </div>
+                <!-- <ul class="preview-thumbnail nav nav-tabs">
+                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-2" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-3" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-4" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-5" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                </ul> -->
+
+            </div>
+            <div class="details col-md-6">
+                <h3 class="product-title">Cold Pack</h3>
+                <div class="rating">
+                    <!-- <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div> -->
+                <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                <h4 class="price">₹ 199</h4>
+                <!-- <iframe
+                width= 100%
+                height="210"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                </iframe> -->
+          
+                <div class="action">
+                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                    <button class="like btn btn-default" type="button"><span
+                            class="fa fa-heart"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Supersaver First Aid Kit -->
+<div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-6">
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="First Aid Kit.jpg" style="width:50%; padding-left: 75px;" ></div>
+                    <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                </div>
+                <!-- <ul class="preview-thumbnail nav nav-tabs">
+                    <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-2" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-3" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-4" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                    <li><a data-target="#pic-5" data-toggle="tab"><img
+                                src="http://placekitten.com/200/126" /></a></li>
+                </ul> -->
+
+            </div>
+            <div class="details col-md-6">
+                <h3 class="product-title">First Aid Kit</h3>
+                <div class="rating">
+                    <!-- <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div> -->
+                <!-- <h3>⚠️Consult the doctor at the given hospital for dosage</h3> -->
+                <h4 class="price">₹ 299</h4>
+                <!-- <iframe
+                width= 100%
+                height="210"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPOSTkA8CcnRex8_gS7SG25DxuI9ch_bI&q=Jupiter+Hospitaln&maptype=roadmap&zoom=19" allowfullscreen>
+                </iframe> -->
+          
+                <div class="action">
+                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                    <button class="like btn btn-default" type="button"><span
+                            class="fa fa-heart"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+    function add(event) 
+    {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "add_to_cart.php?q="+(this.id + "" + 4));
+        xhttp.send();
+    }
+                                                                
+    function loaded() {
+        buttons = document.getElementsByClassName("add-to-cart");
+        for(var i=15; i<25; i+=1) {
+            buttons[i-15].setAttribute("id",i);
+            buttons[i-15].addEventListener("click",add);
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+</body>
+</html>

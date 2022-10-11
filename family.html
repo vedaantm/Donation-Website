@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Family Special</title>
+  <link rel="stylesheet" type="text/css" href="NYcss.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+
+  position: relative;
+  margin: auto;
+}
+span.b {
+  display: inline-block;
+  background-color: lightgrey;
+   width:265px;
+  font-family:Arial;
+  font-size: 20px;
+line-height: 200%;
+
+  border:15px;
+  padding:5px;
+  height: 400px;
+  margin:10px;
+
+    text-align: center;
+
+  }
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+padding-right:30px;
+
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right:0;
+border-radius: 3px 0 0 3px
+}
+
+
+
+/* Caption text */
+.text {
+  color: white;
+  font-size: 25px;
+  background-color: rgba(0,0,0,0.5);
+  padding: 8px 12px;
+width: 98%;
+  position: absolute;
+  bottom: 2.6px;
+text-align: center;
+}
+.prev
+{
+  padding-left: 30px;
+}
+/* Number text (1/3 etc) */
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+
+.sidebar {
+  height: 65%;
+  width: 272px;
+  position:absolute;
+  background-color:white;
+  z-index: 1;
+  text-align:center;
+  top: 90px;
+  right: 0;
+border:solid;
+  overflow-x: hidden;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+background-color:red;
+border:solid;
+border-radius: 25px;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: yellow;
+}
+.td
+{
+  width:1000px;
+  height: 70px;
+
+  margin-left: 250px;
+  margin-top: 60px;
+text-align: center;
+  border: 2px solid white;
+  background-color:white;
+
+
+}
+.main {
+
+  width: 1000px;
+    height: 2000px;
+    padding: 50px;
+    margin-left: 250px;
+    margin-top: 5px;
+font-size: 15px;
+    border: 2px solid white;
+    background-color:white;
+
+}
+.ht{
+  width: 1000px;
+    height: 400px;
+    padding: 50px;
+    margin-left: 250px;
+    margin-top: 5px;
+    font-size: 15px;
+    border: 2px solid white;
+    background-color:white;
+
+
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-nav {
+  margin-top: 20px;
+  margin-left: 250px;
+
+}
+
+.site-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav li {
+  list-style: none;
+  float: left;
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.site-nav a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid white;
+  background-color:white;
+  border-bottom: none;
+
+}
+
+.site-nav a:hover {
+  background-color:rgba(0,0,0,0.2);
+}
+
+
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+
+.group:after {
+  clear: both;
+}
+
+.group {
+  zoom: 1;
+}
+.tab {
+  overflow: hidden;
+  border: 1px solid white;
+  background-color: white;
+  margin-right: 250px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.topnav {
+  overflow: hidden;
+  background-color:white;
+  border: 2px solid white;
+  margin-right: 280px;
+  margin-left: 264px;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: red;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: black;
+  color: white;
+}
+</style>
+</head>
+<body>
+  <h2>
+  <nav class="topnav">
+
+        <a href="homepage.html">Home</a>
+      <a href="#">About</a>
+      <a href="projsignup.html">Sign in</a>
+      <a href="contactus.html">Contact Us</a>
+
+  </nav>
+  </h2>
+  <div class="slideshow-container">
+
+  <div class="mySlides fade">
+
+    <img src="universal.jpg" style="width:100%;padding-right:20px; padding-top:7px;"alt="universal image">
+    <div class="text">Universal Studios Orlando</div>
+  </div>
+
+  <div class="mySlides fade">
+
+    <img src="niagra.jpeg" style="width:100%;padding-right:20px;padding-top:7px;" alt="niagara image">
+    <div class="text">Niagra Falls </div>
+  </div>
+
+  <div class="mySlides fade">
+
+    <img src="NY2.jpeg" style="width:100%;padding-right:20px;padding-top:7px;"alt="NY image">
+    <div class="text">New York</div>
+  </div>
+
+
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+<div class="sidebar">
+<p style="border-bottom:solid red; padding-bottom: 10px;">Family Special</p><p>13N 14D</p><p>INR 293000/-</p>
+
+  <p>The given below Price is as of now,Discount will be given on the Price will change as the seats fill.The Price is inclusive of INR,and Euro/USD/AUD component and is calculated at today's rate of exchange.Prevailing rates will be applicable at the time of booking/balance payment Taxes Extra Terms and Conditions apply</p>
+<a href="contactus.html">Enquiry</a>
+<br>
+<a href="incexc.html">Trip Inclusion/Exclusion</a>
+</div>
+<div class="td">
+  <h2>Tour details</h2>
+</div>
+<nav class="site-nav">
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'ITENARARY')">ITENARARY</button>
+    <button class="tablinks" onclick="openCity(event, 'HIGHLIGHT')">HIGHTLIGHT</button>
+    <button class="tablinks" onclick="openCity(event, 'COMPLEMENTARY')">COMPLEMENTARY</button>
+  </div>
+  </nav>
+  <div id="ITENARARY" class="tabcontent">
+    <div class="main">
+      <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 1: New York<h2>
+      <ul>
+      <li>Arrive at New York. Check-In in the Roosevelt Hotel.</li>
+        <li>Go for an evening stroll to Central Park</li>
+    <li>Go back to Hotel for dinner.</li>
+      </ul>
+        <br>
+        <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 2: New York<h2>
+          <ul>
+            <li> After early morning after breakfast go for sightseeing of New York city .</li>
+            <li>9/11 memorial,Empire state Building & ferry ride to Statue of Liberty in Liberty Island . </li>
+            <li>Lunch Break</li>
+            <li>In the evening,drive to the One World Trade Centre. After witnessing the city from the top, proceed forward for a heart-filling shopping session.</li>
+            <li>Later, drive across the Times Square, and the Manhattan city before returning back to the hotel for an overnight stay.</li>
+        </ul>
+        <br>
+        <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 3:New York to WashingtonDC <h2>
+          <ul>
+            <li>After Breakfast at hotel, depart to airport to WashingtonDC.</li>
+            <li>Lunch Break</li>
+            <li>Check-In in the Hotel Hay-Adams.</li>
+            <li> In the evening,head out for sight-seeing begin with a visit to the Washington Monument followed by Lincoln Memorial, White House, and Smithsonian Air and Space Museum.</li>
+            <li>Back to Hotel for sightseeing.</li>
+          </ul>
+          <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 4: WashingtonDC to Niagra<h2>
+            <ul>
+            <li>After breakfast, check-out from hotel.</li>
+            <li>Drive to Hershey's Chocolate World to enjoy a chocolate adventure </li>
+            <li>Lunch Break</li>
+            <li>Later, drive across the border to reach Niagara. On arrival, check-in at the Check -In the hotel Marriot on the Falls.</li>
+
+            </ul>
+      <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 5: Niagra<h2>
+      <ul>
+        <li>After breakfast,gear up for sightseeing tour of Niagara Falls. </li>
+<li> After that explore other attractions such as Goat Island, Cave of the Winds, along with a 'Maid of the Mist' cruise tour which provides close encounters with the falls.</li>
+        <li>Lunch Break</li>
+        <li>Later, proceed to visit the Skylon Tower. Also, witness the Niagara falls illuminations in the evening.</li>
+  <li>Back to Hotel for dinner</li>
+      </ul>
+      <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 6:Niagra to Chicago <h2>
+      <ul>
+          <li>Early morning after breakfast,check-out from hotel & fly to Chicago </li>
+        <li>Arrive in Chicago, Check-In the Hotel 166 .</li>
+        <li>Lunch Break</li>
+        <li>Later, embark on a Chicago Architecture boat tour followed by city orientation tour which includes visits to places like Swami Vivekananda way, Buckingham fountain, Claude Gate, and Michigan Avenue. </li>
+        <li> Later visit Lake Michigan waterfront, and the University of Chicago before returning to the hotel..</li>
+      </ul>
+        <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 7:Chicago to Orlando<h2>
+          <ul>
+            <li>After early breakfast, fly to Orlando.</li>
+            <li>Arrive in Orlando, Check -In at Hotel Hilto Orlando.</li>
+            <li>The remaining part of the day is free for you to shop at the International Premium Outlets.</li>
+            <li>Get back to hotel for dinner.</li>
+          </ul>
+          <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 7:Orlando<h2>
+            <ul>
+              <li>After early breakfast go for guided tour to KSC & Magic Kindom.</li>
+              <li>After full day activity go back to hotel for dinner</li>
+              </ul>
+              <h2 style="color:#FF3333; background-color: rgba(0,0,0,0.1);text-align:center;">Day 8:Orlando to Home<h2>
+                <ul>
+                  <li>After early breakfastdrive to airport for flying to home. Tour Conclude!</li>
+
+                  </ul>
+</div>
+</div>
+<div id="HIGHLIGHT" class="tabcontent">
+  <h1 style="background-color : red ; text-align: center; margin-right:250px;margin-left:250px;">Tour Highlights</h1>
+<div class="ht">
+
+
+  <h3>Tour type</h3>
+  <ul>
+  <li>Individual Tour</li>
+  </ul>
+
+  <h3>Hotels,Restaurants and Meals</h3>
+  <ul>
+  <li>Hotel Category :</li>
+  <li>Meal Type : B/F CONTINENTAL, INDIAN MEALS, OCCASIONALLY FAST/LOCAL Food</li>
+  <li>Special Meal : Jain Meal available(no onion garlic), baby food available</li>
+  <li>Toppings : 1 Tea/Cof/Soft Drink, 2 Tea/Cof/Hot Chocolate, 1 Tea</li>
+  </ul>
+
+  <h3>Journey : Airline/Roadways/Rail/Cruise</h3>
+  <ul>
+  <li>Airline : American airlines</li>
+  <li>Roadways: Fully Air conditioned bus</li>
+  </ul>
+</div>
+</div>
+
+
+<div id="COMPLEMENTARY" class="tabcontent">
+  <h1 style="background-color : red ; text-align: center;margin-left:250px;margin-right:252px;">COMPLEMENTARY</h1>
+  <span class="b">
+  <img src="wettissue.jpeg" style=" padding-bottom:15px;width:200px; height:300px; border-bottom:solid red;"alt="tissue image"><p>1.Wet Tissue</p>
+  </span>
+    <span class="b">
+      <img src="adapter.jpeg" style=" padding-bottom:15px;width:200px; height:300px; border-bottom:solid red;"alt="adapter image"><p>2.Universal Adapter</p>
+      </span>
+        <span class="b">
+          <img src="handbag.jpeg" style=" padding-bottom:15px;width:200px; height:300px; border-bottom:solid red;"alt="bag image"><p>3.Shoulder Bag</p>
+        </span>
+          <span class="b">
+                            <img src="pbag.jpeg" style=" padding-bottom:15px;width:200px; height:300px; border-bottom:solid red;"alt="passport bag image"><p>4. Passport Bag</p>
+              </span>
+              <span class="b">
+  <img src="cap.jpeg" style=" padding-bottom:15px;width:200px; height:300px; border-bottom:solid red;"alt="cap image"><p>5.Cap</p>
+                  </span>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
